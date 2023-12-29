@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long mat[1001][1001], maxim = -100000001, minim = 100000001, m, n, i, j, imax, imin;
+
+int main()
+{
+    ifstream fin("interschimbarelinii.in");
+    ofstream fout("interschimbarelinii.out");
+    
+    fin >> n >> m;
+    
+    for(i = 1; i <= n; i ++)
+    {
+        for(j = 1; j <= m; j ++)
+        {
+            fin >> mat[i][j];
+            
+            if(mat[i][j] > maxim)
+            {
+                maxim = mat[i][j];
+                imax = i;
+            }
+        
+            if(mat[i][j] < minim)
+            {
+                minim = mat[i][j];
+                imin = i;
+            }
+        }
+    }
+    
+    for(j = 1; j <= m; j ++)
+    {
+        swap(mat[imax][j], mat[imin][j]);
+    }
+    
+    for(i = 1; i <= n; i ++)
+    {
+        for(j = 1; j <= m; j ++)
+        {
+            fout << mat[i][j] << ' ';
+        }
+        
+        fout << '\n';
+    }
+    
+    return 0;
+}
